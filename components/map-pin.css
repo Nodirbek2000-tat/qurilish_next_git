@@ -1,0 +1,18 @@
+/* Uy rasmli katta belgi: uchi aynan nuqtada (xarita bilan birga suriladi) */
+.ym-pin-b { width: max-content; transform: translate(-50%, -100%); }
+.ym-bubble { width: max-content; display: flex; flex-direction: column; align-items: center; font-family: var(--font-sans); }
+.ym-bubble-ph { position: relative; padding: 6px; border-radius: 999px; background: #fff;
+  box-shadow: 0 0 0 3px var(--accent), 0 18px 40px -12px rgb(0 0 0 / 0.55); transition: transform 0.3s var(--ease); }
+.ym-bubble:hover .ym-bubble-ph { transform: translateY(-3px) scale(1.04); }
+.ym-bubble-ph img { display: block; max-width: none; width: 76px; height: 76px; border-radius: 999px; object-fit: cover; }
+@media (min-width: 768px) { .ym-bubble-ph img { width: 96px; height: 96px; } }
+.ym-bubble-ph b { position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap;
+  border-radius: 999px; background: var(--ink); color: var(--paper); padding: 4px 12px; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.03em; box-shadow: 0 6px 14px -6px rgb(0 0 0 / 0.5); }
+.ym-bubble i { display: block; width: 3px; height: 16px; margin-top: 14px; border-radius: 999px; background: var(--accent); }
+.ym-bubble s { position: relative; display: block; width: 12px; height: 12px; margin-bottom: -6px; border-radius: 999px;
+  border: 2px solid #fff; background: var(--accent); }
+.ym-bubble s::after { content: ""; position: absolute; inset: -2px; border-radius: 999px; background: var(--accent);
+  animation: map-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+@keyframes map-ping { 75%, 100% { transform: scale(3.2); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .ym-bubble s::after { animation: none; } }
