@@ -2,7 +2,8 @@
 FROM node:22-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --no-audit --no-fund
+# npm ci Windows'da yasalgan lock faylda Linux uchun ba'zi paketlarni topolmaydi — shuning uchun npm install
+RUN npm install --no-audit --no-fund
 
 FROM node:22-alpine AS build
 WORKDIR /app
