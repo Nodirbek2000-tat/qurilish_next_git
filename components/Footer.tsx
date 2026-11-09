@@ -71,13 +71,13 @@ export function Footer({ site }: { site: Site }) {
           <div>
             <p className="eyebrow !text-white/40">Aloqa</p>
             <ul className="mt-5 space-y-3">
-              {site.phone && (
-                <li>
-                  <a href={telHref(site.phone)} className="inline-flex items-center gap-2.5 text-2xl font-semibold text-white tabular-nums transition-colors hover:text-accent">
-                    <Phone size={20} className="text-accent" /> {site.phone}
+              {(site.phones?.length ? site.phones : site.phone ? [site.phone] : []).map((tel) => (
+                <li key={tel}>
+                  <a href={telHref(tel)} className="inline-flex items-center gap-2.5 text-xl font-semibold whitespace-nowrap text-white tabular-nums transition-colors hover:text-accent">
+                    <Phone size={18} className="text-accent" /> {tel}
                   </a>
                 </li>
-              )}
+              ))}
               {site.address && (
                 <li className="flex items-start gap-2.5 text-white/80"><MapPin size={16} className="mt-1 shrink-0 text-accent" /> {site.address}</li>
               )}

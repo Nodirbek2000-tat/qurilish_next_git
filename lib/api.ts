@@ -68,7 +68,10 @@ export type PostDetail = PostBrief & {
 };
 
 export type Site = {
+  /** Asosiy raqam (birinchisi) */
   phone: string;
+  /** Barcha aloqa raqamlari */
+  phones: string[];
   email: string;
   address: string;
   lat: number | null;
@@ -85,6 +88,7 @@ export type Site = {
 
 const FALLBACK_SITE: Site = {
   phone: "",
+  phones: [],
   email: "",
   address: "Samarqand",
   lat: null,

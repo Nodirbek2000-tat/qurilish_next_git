@@ -30,10 +30,14 @@ export default async function ContactPage() {
       <section className="container-x pb-20">
         <div className={`grid gap-px overflow-hidden rounded-[24px] border border-line bg-line ${cols}`}>
           {site.phone && (
-            <a href={telHref(site.phone)} className="group bg-paper p-8 transition-colors hover:bg-card" data-reveal>
+            <div className="bg-paper p-8" data-reveal>
               <p className="eyebrow">Telefon</p>
-              <p className="mt-4 text-2xl font-semibold tracking-tight tabular-nums group-hover:text-accent">{site.phone}</p>
-            </a>
+              <div className="mt-4 space-y-1.5">
+                {(site.phones?.length ? site.phones : [site.phone]).map((tel) => (
+                  <a key={tel} href={telHref(tel)} className="block text-2xl font-semibold tracking-tight whitespace-nowrap tabular-nums transition-colors hover:text-accent">{tel}</a>
+                ))}
+              </div>
+            </div>
           )}
           {site.email && (
             <a href={`mailto:${site.email}`} className="group bg-paper p-8 transition-colors hover:bg-card" data-reveal style={{ "--d": 1 } as React.CSSProperties}>
