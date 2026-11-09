@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { logoutAction } from "@/app/(panel)/[panel]/actions";
-import { LogoMark } from "../Logo";
+import { LogoMark, LogoWord } from "../Logo";
 
 export function PanelNav({ base, name }: { base: string; name: string }) {
   const path = usePathname();
@@ -24,13 +24,13 @@ export function PanelNav({ base, name }: { base: string; name: string }) {
   return (
     <>
       <div className="flex items-center justify-between bg-night px-4 py-3 text-white lg:hidden">
-        <span className="flex items-end gap-2"><LogoMark size={24} /><b className="tracking-[0.3em]">ARXAN</b></span>
+        <span className="flex items-center gap-2"><LogoMark size={28} /><LogoWord height={22} /></span>
         <button type="button" onClick={() => setOpen((v) => !v)} aria-label="Menyu">{open ? <X /> : <Menu />}</button>
       </div>
       <aside className={`${open ? "block" : "hidden"} bg-night text-white lg:sticky lg:top-0 lg:block lg:h-screen`}>
         <div className="flex h-full flex-col p-5">
-          <div className="mb-10 hidden items-end gap-2.5 px-2 pt-2 lg:flex">
-            <LogoMark size={28} /><b className="text-[17px] tracking-[0.32em]">ARXAN</b>
+          <div className="mb-10 hidden items-center gap-2.5 px-2 pt-2 lg:flex">
+            <LogoMark size={34} /><LogoWord height={26} />
           </div>
           <nav className="space-y-1">
             {items.map(({ href, label, Icon, exact }) => (

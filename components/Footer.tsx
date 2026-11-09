@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Site } from "@/lib/api";
 import { officeRouteUrl, telHref } from "@/lib/format";
 import { ArchBand } from "./Decor";
-import { LogoMark } from "./Logo";
+import { LogoStacked } from "./Logo";
 import { NAV } from "./nav";
 import { YandexMap } from "./ui";
 
@@ -41,7 +41,7 @@ export function Footer({ site }: { site: Site }) {
         {/* Tepada: shior, sahifalar, aloqa va o'ngda sotuv bo'limi; pastda — keng xarita */}
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.1fr_1fr_1fr_1.2fr] lg:gap-8">
           <div>
-            <LogoMark size={44} className="text-white" />
+            <LogoStacked height={96} className="text-[#F4F0E8]" />
             <p className="mt-6 max-w-sm text-[22px] leading-snug font-medium text-white">Yashash uchun qurilgan makon.</p>
             {socials.length > 0 && (
               <ul className="mt-6 flex flex-wrap gap-3" aria-label="Ijtimoiy tarmoqlar">

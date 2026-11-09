@@ -1,9 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#121417"/>
-  <g fill="#f5f3ee">
-    <rect x="5" y="19" width="3" height="8"/><rect x="9.5" y="14" width="3" height="13"/>
-    <rect x="14.5" y="6" width="3" height="21"/><rect x="19.5" y="14" width="3" height="13"/>
-    <rect x="24" y="19" width="3" height="8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#112C3F"/>
+  <g fill="#C5A86A" transform="translate(13.4 9.5) scale(0.1295)">
+    <g transform="translate(-385 -254)">
+      <polygon points="389,465 443,420 443,613 389,613"/>
+      <polygon points="459,530 512,487 512,613 459,613"/>
+      <polygon points="459,362 512,318 512,411 535,394 601,455 601,613 554,568 554,484 524,457 459,510"/>
+      <polygon points="546,258 601,309 601,430 546,378"/>
+      <polygon points="619,348 668,396 668,613 619,613"/>
+    </g>
   </g>
-  <rect x="4" y="20" width="24" height="1.6" fill="#121417"/>
 </svg>
