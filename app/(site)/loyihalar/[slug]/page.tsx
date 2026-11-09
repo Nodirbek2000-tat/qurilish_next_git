@@ -192,7 +192,7 @@ async function ProjectDetail({ slug }: { slug: string }) {
       {/* ---------- MUDDATLI TO'LOV ---------- */}
       <section className="container-x py-20">
         <SectionHead eyebrow="Muddatli to'lov" title={<>Oylik to&apos;lovni<br />oldindan biling</>} />
-        <div data-reveal="scale"><MortgageCalc /></div>
+        <div data-reveal="scale"><MortgageCalc priceM2={p.priceM2} /></div>
       </section>
 
       {/* ---------- SAVDO OFISI / OBYEKT ---------- */}

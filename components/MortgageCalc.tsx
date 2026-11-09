@@ -23,27 +23,41 @@ function Slider({ label, value, min, max, step, suffix, onChange }: {
   );
 }
 
-/** Muddatli to'lov kalkulyatori: foizsiz, boshlang'ich to'lovdan keyin qolgani teng oylarga bo'linadi. Hisob taxminiy — ommaviy oferta emas. */
-export function MortgageCalc({ initialPrice = 800_000_000 }: { initialPrice?: number }) {
-  const [price, setPrice] = useState(initialPrice);
+/** Bo'lmasa — Arxan Residence narxi */
+const DEFAULT_M2 = 9_500_000;
+
+/**
+ * Muddatli to'lov kalkulyatori: narx = maydon × 1 m² narxi (pul kiritilmaydi).
+ * Xonadon sahifasida maydon aniq (o'zgarmaydi), boshqa joyda — maydon tanlanadi.
+ * Foizsiz: boshlang'ich to'lovdan keyin qolgani teng oylarga bo'linadi. Hisob taxminiy — ommaviy oferta emas.
+ */
+export function MortgageCalc({ priceM2, area: fixedArea, price: fixedPrice }: {
+  priceM2?: number | null; area?: number; price?: number | null;
+}) {
+  const m2 = priceM2 || DEFAULT_M2;
+  const [areaPick, setArea] = useState(60);
   const [down, setDown] = useState(30);
   const [months, setMonths] = useState(12);
 
+  const area = fixedArea ?? areaPick;
+  const price = fixedArea !== undefined && fixedPrice ? fixedPrice : area * m2;
   const first = price * (down / 100);
   const rest = Math.max(0, price - first);
   const monthly = months ? rest / months : 0;
   const money = (n: number) => formatNumber(Math.round(n));
+  const areaText = `${area.toFixed(2).replace(/\.?0+$/, "").replace(".", ",")} m²`;
 
   return (
     <div className="grid overflow-hidden rounded-[30px] border border-line bg-card lg:grid-cols-[1.15fr_1fr]">
       <div className="space-y-8 p-6 md:p-10">
-        <label className="block">
-          <span className="eyebrow">Xonadon narxi, so&apos;m</span>
-          <input
-            className="field mt-3 !h-14 text-xl font-semibold tabular-nums" inputMode="numeric" value={money(price)}
-            onChange={(e) => setPrice(Math.min(Number(e.target.value.replace(/\D/g, "")) || 0, 1e13))}
-          />
-        </label>
+        {fixedArea === undefined && (
+          <Slider label="Xonadon maydoni" value={areaPick} min={25} max={150} step={1} suffix="m²" onChange={setArea} />
+        )}
+        <div className="rounded-[20px] bg-sand p-5">
+          <p className="eyebrow">Xonadon narxi</p>
+          <p className="mt-2 text-2xl font-semibold tabular-nums">{money(price)} so&apos;m</p>
+          <p className="mt-1 text-sm text-muted tabular-nums">{areaText} × {money(m2)} so&apos;m (1 m²)</p>
+        </div>
         <Slider label="Boshlang'ich to'lov" value={down} min={0} max={100} step={5} suffix="%" onChange={setDown} />
         <Slider label="Muddat" value={months} min={1} max={36} step={1} suffix="oy" onChange={setMonths} />
       </div>

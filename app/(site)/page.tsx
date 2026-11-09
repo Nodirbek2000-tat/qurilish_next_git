@@ -123,7 +123,7 @@ export default async function Home() {
       {/* ---------- MUDDATLI TO'LOV ---------- */}
       <section className="container-x py-24">
         <SectionHead eyebrow="Muddatli to'lov" title={<>Oylik to&apos;lovni<br />oldindan biling</>} />
-        <div data-reveal="scale"><MortgageCalc /></div>
+        <div data-reveal="scale"><MortgageCalc priceM2={projects.find((p) => p.priceM2)?.priceM2 ?? null} /></div>
       </section>
 
       {/* ---------- KOMPANIYA HAQIDA ---------- */}

@@ -90,6 +90,7 @@ async function FlatView({ id }: { id: string }) {
             <div className="mt-6 rounded-[22px] bg-sand p-6" data-reveal>
               <p className="text-sm text-muted">Narx</p>
               <p className="text-2xl font-semibold tabular-nums">{f.price ? formatPrice(f.price) : "So'rov bo'yicha"}</p>
+              {f.priceM2 ? <p className="mt-1 text-sm text-muted tabular-nums">1 m² — {formatPrice(f.priceM2)}</p> : null}
               <div className="mt-5 flex flex-wrap gap-3">
                 <a href="#sorov" className="btn btn-accent">Ma&apos;lumot olish <Arrow /></a>
                 {site.phone && <a href={telHref(site.phone)} className="btn btn-ghost">Qo&apos;ng&apos;iroq qilish</a>}
@@ -124,7 +125,7 @@ async function FlatView({ id }: { id: string }) {
 
       <section className="container-x py-16">
         <SectionHead eyebrow="Muddatli to'lov" title={<>Oylik to&apos;lovni<br />oldindan biling</>} />
-        <div data-reveal="scale"><MortgageCalc initialPrice={f.price ?? 800_000_000} /></div>
+        <div data-reveal="scale"><MortgageCalc priceM2={f.priceM2} area={f.area} price={f.price} /></div>
       </section>
 
       {f.sameFloor.length > 0 && (

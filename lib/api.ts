@@ -21,6 +21,8 @@ export type Project = {
   handover: string;
   lat: number | null;
   lng: number | null;
+  /** 1 m² narxi, so'm (bo'lmasa — null) */
+  priceM2: number | null;
 };
 
 export type PostBrief = {
@@ -169,6 +171,7 @@ export type Flat = {
   status: FlatStatus;
   statusLabel: string;
   price: number | null;
+  priceM2: number | null;
   plan: string | null;
   building: { id: number; number: number; queue: number };
   year: number | null;
