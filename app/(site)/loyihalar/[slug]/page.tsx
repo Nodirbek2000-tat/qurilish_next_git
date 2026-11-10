@@ -95,10 +95,9 @@ async function ProjectDetail({ slug }: { slug: string }) {
           {p.tagline && <p className="mt-6 max-w-xl text-xl text-white/85 md:text-2xl" data-reveal>{p.tagline}</p>}
           {p.status !== "topshirilgan" && (
             <div className="mt-10 flex flex-wrap gap-3" data-reveal>
-              <Link href={`/loyihalar/${p.slug}/genplan`} className="btn bg-white text-[#14171a] hover:bg-accent hover:text-on-accent">
-                Blok va kvartira tanlash <Arrow />
+              <Link href={`/kvartiralar?project=${p.slug}`} className="btn bg-white text-[#14171a] hover:bg-accent hover:text-on-accent">
+                Kvartira tanlash <Arrow />
               </Link>
-              <Link href={`/kvartiralar?project=${p.slug}`} className="btn border border-white/40 backdrop-blur hover:bg-white/10">Barcha xonadonlar</Link>
             </div>
           )}
         </div>
@@ -164,8 +163,7 @@ async function ProjectDetail({ slug }: { slug: string }) {
               <h2 className="h-display mt-4 text-[clamp(34px,5vw,64px)]" data-reveal>Kvartira tanlash</h2>
             </div>
             <div className="flex flex-wrap gap-3" data-reveal>
-              <Link href={`/loyihalar/${p.slug}/genplan`} className="btn btn-accent">Interaktiv tanlov <Arrow /></Link>
-              <Link href={`/kvartiralar?project=${p.slug}`} className="btn btn-ghost">Barchasi</Link>
+              <Link href={`/kvartiralar?project=${p.slug}`} className="btn btn-accent">Barcha xonadonlar <Arrow /></Link>
             </div>
           </div>
           <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 [&>*]:w-[82%] [&>*]:shrink-0 [&>*]:snap-start sm:[&>*]:w-auto">

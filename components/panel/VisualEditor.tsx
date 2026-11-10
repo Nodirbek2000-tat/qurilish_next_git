@@ -25,7 +25,6 @@ export function VisualEditor({ schema, record, items }: { schema: Schema; record
   const aboutVid = useMediaSlot(fields.about_video, (record.about_video as string) || null, "video", F);
   const coverImg = useMediaSlot(fields.cover, (record.cover as string) || null, "image", F);
   const logoImg = useMediaSlot(fields.logo, (record.logo as string) || null, "image", F);
-  const genplanImg = useMediaSlot(fields.genplan, (record.genplan as string) || null, "image", F);
   const [office, setOffice] = useState(s("office"));
   const [newOffice, setNewOffice] = useState<{ value: number; label: string } | null>(null);
   const [officeForm, setOfficeForm] = useState(false);
@@ -38,7 +37,7 @@ export function VisualEditor({ schema, record, items }: { schema: Schema; record
     if (state.ok) router.refresh(); // yangi qiymatlar bilan qayta chiziladi (kalit orqali qayta o'rnatiladi)
   }, [state, router]);
 
-  const anyDirty = dirty || [hero, aboutImg, aboutVid, lobbyImg, coverImg, logoImg, genplanImg].some((m) => m.slot.dirty);
+  const anyDirty = dirty || [hero, aboutImg, aboutVid, lobbyImg, coverImg, logoImg].some((m) => m.slot.dirty);
   // Shu yerda yaratilgan ofis — sahifa yangilanguncha ro'yxatda bo'lmasligi mumkin
   const officeChoices = [...(fields.office?.choices ?? []),
     ...(newOffice && !fields.office?.choices?.some((c) => c.value === newOffice.value) ? [newOffice] : [])];
@@ -56,7 +55,7 @@ export function VisualEditor({ schema, record, items }: { schema: Schema; record
     <div className="space-y-12" style={{ "--accent": color } as React.CSSProperties}
          onChange={(e) => { if ((e.target as HTMLInputElement).form?.id === F) setDirty(true); }}>
       <form id={F} noValidate onSubmit={(e) => { e.preventDefault(); const fd = new FormData(e.currentTarget); startTransition(() => action(fd)); }} />
-      {hero.hiddenInput}{aboutImg.hiddenInput}{lobbyImg.hiddenInput}{coverImg.hiddenInput}{logoImg.hiddenInput}{genplanImg.hiddenInput}{mediaMode === "video" && aboutVid.hiddenInput}{clearOther}
+      {hero.hiddenInput}{aboutImg.hiddenInput}{lobbyImg.hiddenInput}{coverImg.hiddenInput}{logoImg.hiddenInput}{mediaMode === "video" && aboutVid.hiddenInput}{clearOther}
 
       {/* ===================== HERO ===================== */}
       <section>
@@ -284,11 +283,10 @@ export function VisualEditor({ schema, record, items }: { schema: Schema; record
       {/* ===================== QO'SHIMCHA RASMLAR ===================== */}
       <section>
         <h2 className="mb-3 text-lg font-semibold">Qo&apos;shimcha rasmlar</h2>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {[
             { m: coverImg, label: fields.cover?.label ?? "Karta rasmi", ratio: "aspect-[4/3]" },
             { m: logoImg, label: fields.logo?.label ?? "Logo", ratio: "aspect-square" },
-            { m: genplanImg, label: fields.genplan?.label ?? "Genplan", ratio: "aspect-[4/3]" },
           ].map(({ m, label, ratio }) => (
             <div key={label}>
               <button type="button" {...m.dropProps} onClick={m.open}

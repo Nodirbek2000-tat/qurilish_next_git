@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { PageLoader } from "@/components/HouseLoader";
@@ -54,7 +53,7 @@ async function FlatView({ id }: { id: string }) {
       <section className="container-x overflow-x-clip pt-28 pb-16 md:pt-32">
         <Crumbs items={[
           { href: `/loyihalar/${f.project.slug}`, label: f.project.title },
-          { href: `/bino/${f.building.id}?qavat=${f.floor}`, label: `${f.building.number}-blok, ${f.floor}-qavat` },
+          { label: `${f.building.number}-blok, ${f.floor}-qavat` },
           { label: `№ ${f.number}` },
         ]} />
 
@@ -97,11 +96,6 @@ async function FlatView({ id }: { id: string }) {
               </div>
             </div>
 
-            {f.floorPlan && (
-              <Link href={`/bino/${f.building.id}?qavat=${f.floor}`} className="link-arrow mt-6 hover:text-accent">
-                Qavat rejasini ko&apos;rish <Arrow />
-              </Link>
-            )}
           </div>
         </div>
       </section>
@@ -130,7 +124,7 @@ async function FlatView({ id }: { id: string }) {
 
       {f.sameFloor.length > 0 && (
         <section className="container-x py-16">
-          <SectionHead eyebrow="Shu qavatda" title="Boshqa xonadonlar" link={{ href: `/bino/${f.building.id}?qavat=${f.floor}`, label: "Qavatni ko'rish" }} />
+          <SectionHead eyebrow="Shu qavatda" title="Boshqa xonadonlar" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {f.sameFloor.map((x, i) => <FlatCard key={x.id} flat={x} index={i} />)}
           </div>

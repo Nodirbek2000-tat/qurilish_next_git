@@ -10,7 +10,7 @@ const KEY = process.env.PANEL_URL_KEY ?? "";
 const COOKIE = "arxan_panel";
 const SITE = new Set([
   "", "kvartiralar", "loyihalar", "biz-haqimizda", "media", "murojaat",
-  "aloqa", "sevimlilar", "bino", "kvartira", "api", "uploads", "_next", "topilmadi", "textures",
+  "aloqa", "sevimlilar", "kvartira", "api", "uploads", "_next", "topilmadi", "textures",
 ]);
 
 export function proxy(request: NextRequest) {

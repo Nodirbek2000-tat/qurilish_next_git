@@ -236,17 +236,3 @@ export async function getFlat(id: string): Promise<FlatDetail | null> {
   return /^\d+$/.test(id) ? get<FlatDetail>(`/flats/${id}/`) : null;
 }
 
-export async function getGenplan(slug: string): Promise<Genplan | null> {
-  "use cache";
-  cacheLife("minutes");
-  cacheTag("flats");
-  return get<Genplan>(`/projects/${encodeURIComponent(slug)}/genplan/`);
-}
-
-export async function getBuilding(id: string, floor: string): Promise<BuildingView | null> {
-  "use cache";
-  cacheLife("minutes");
-  cacheTag("flats");
-  if (!/^\d+$/.test(id)) return null;
-  return get<BuildingView>(`/buildings/${id}/${/^-?\d+$/.test(floor) ? `?floor=${floor}` : ""}`);
-}
