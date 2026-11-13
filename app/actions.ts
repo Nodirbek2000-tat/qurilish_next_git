@@ -27,6 +27,8 @@ export async function sendLead(_prev: LeadState, form: FormData): Promise<LeadSt
         "Content-Type": "application/json",
         "X-Site-Key": process.env.SITE_API_KEY ?? "",
         "X-Client-IP": ip,
+        // Kim yuborgani — spam botlarni aniqlash uchun (bazada saqlanadi, saytda ko'rinmaydi)
+        "X-Client-UA": (h.get("user-agent") ?? "").slice(0, 300),
       },
       body: JSON.stringify(payload),
       cache: "no-store",
